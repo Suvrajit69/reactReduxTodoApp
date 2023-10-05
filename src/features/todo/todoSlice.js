@@ -1,22 +1,16 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
-let nextTodoId = 1;
-const initialState = {
-  todoId1: {
-    id: "todoId1",
-    text: "Sample Todo 1",
-    completed: false,
-  },
-};
+// boardSlice.js
 
-export const todoSlice = createSlice({
-  name: "todo",
-  initialState,
+import { createSlice, nanoid } from '@reduxjs/toolkit';
+
+const todoSlice = createSlice({
+  name: 'todos',
+  initialState: {},
   reducers: {
     addTodo: (state, action) => {
-      const newTodoId = `todo ${nextTodoId}`
-      const {text, completed } = action.payload;
-      state[newTodoId] = {
-        id: nanoid(),
+      const { id,text, completed } = action.payload;
+      // const id = nanoid()
+      state[id] = {
+        id,
         text,
         completed,
       };
@@ -40,6 +34,5 @@ export const todoSlice = createSlice({
   },
 });
 
-export const { addTodo, removeTodo, toggleTodo, editTodo } = todoSlice.actions;
-
+export const { addTodo, editTodo, toggleTodo, removeTodo } = todoSlice.actions;
 export default todoSlice.reducer;

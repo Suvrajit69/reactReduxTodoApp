@@ -1,23 +1,14 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
-let boardId = 1;
-const initialState = {
-  boardId1: {
-    id: 'boardId1',
-    name: 'Board 1',
-    todoIds: [],
-  },
-};
+import { createSlice } from "@reduxjs/toolkit";
 
 const boardSlice = createSlice({
-  name: 'boards',
-  initialState,
+  name: "boards",
+  initialState: {},
   reducers: {
     addBoard: (state, action) => {
-      const newBoardId = `board ${boardId}`
-      const { todoIds } = action.payload;
-      state[newBoardId] = {
-        id: nanoid(),
-        name: newBoardId,
+      const { id, name, todoIds } = action.payload;
+      state[id] = {
+        id,
+        name,
         todoIds,
       };
     },
@@ -31,14 +22,29 @@ const boardSlice = createSlice({
       const { id } = action.payload;
       delete state[id];
     },
-    addTodoInBoard: (state, action) => {
+    addTodoToBoard: (state, action) => {
       const { boardId, todoId } = action.payload;
+      
       if (state[boardId]) {
         state[boardId].todoIds.push(todoId);
       }
     },
+    removeTodoIdFromBoard: (state, action) => {
+      const { boardId, todoId } = action.payload;
+      if (state[boardId]) {
+        state[boardId].todoIds = state[boardId].todoIds.filter(
+          (id) => id !== todoId
+        );
+      }
+    },
   },
 });
-export const { addBoard, addTodosInBoard, removeBoard } = boardSlice.actions;
 
+export const {
+  addBoard,
+  editBoard,
+  removeBoard,
+  addTodoToBoard,
+  removeTodoIdFromBoard,
+} = boardSlice.actions;
 export default boardSlice.reducer;

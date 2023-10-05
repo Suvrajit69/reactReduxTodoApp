@@ -1,28 +1,50 @@
-import { useState } from "react";
-import BoardLine from "./components/BoardLine";
-import NewTodo from "./components/NewTodo";
-import CompletedTodo from "./components/CompletedTodo";
-import AddTodo from "./components/AddTodo";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  addBoard,
+} from "./features/board/boardSlice";
 
-function App() {
+import BoardCard from "./components/BoardCard";
+
+const App = () => {
+  const dispatch = useDispatch();
+
+  const [newBoardName, setNewBoardName] = useState("");
+  
+
+  const handleAddBoard = () => {
+    const boardId = new Date().getUTCMilliseconds();
+    if (newBoardName.trim() !== "") {
+      dispatch(addBoard({ name: newBoardName, id: boardId, todoIds: [] }));
+      setNewBoardName("");
+    }
+  };
+
+  
+
   return (
-    <>
-      <div className="w-full h-screen flex justify-center mt-40 relative">
-        <div className="w-5/6 h-14  bg-yellow-300 rounded-md z-10 ">
-          <BoardLine />
-        </div>
-        <div className="w-24 h-2/3 bg-yellow-400 absolute bottom-30 left-12 md:left-[5.4rem]">
-          <NewTodo />
-        </div>
-        <div className="w-24 h-2/3 bg-yellow-400 absolute bottom-30 right-12 md:right-[5.4rem]">
-          <CompletedTodo />
-        </div>
-        <div className="absolute top-16 w-[64%] h-full">
-          <AddTodo/>
-        </div>
+    <div className="container mx-auto p-4 w-full h-full">
+      <h1 className="text-2xl font-semibold mb-4">Todo App</h1>
+
+      {/* Add New Board */}
+      <div className="mb-4">
+        <input
+          type="text"
+          placeholder="Enter board name"
+          className="mr-2 p-2 border rounded"
+          value={newBoardName}
+          onChange={(e) => setNewBoardName(e.target.value)}
+        />
+        <button
+          onClick={handleAddBoard}
+          className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded"
+        >
+          Add Board
+        </button>
       </div>
-    </>
+      <BoardCard/>
+    </div>
   );
-}
+};
 
 export default App;
