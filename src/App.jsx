@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  addBoard,
-} from "./features/board/boardSlice";
+import { addBoard } from "./features/board/boardSlice";
 
 import BoardCard from "./components/BoardCard";
 
@@ -10,7 +8,6 @@ const App = () => {
   const dispatch = useDispatch();
 
   const [newBoardName, setNewBoardName] = useState("");
-  
 
   const handleAddBoard = () => {
     const boardId = new Date().getUTCMilliseconds();
@@ -20,10 +17,9 @@ const App = () => {
     }
   };
 
-  
-
   return (
     <div className="container mx-auto p-4 w-full h-full">
+      <span className="orange_gradient text-center"></span>
       <h1 className="text-2xl font-semibold mb-4">Todo App</h1>
 
       {/* Add New Board */}
@@ -42,7 +38,7 @@ const App = () => {
           Add Board
         </button>
       </div>
-      <BoardCard/>
+      <BoardCard />
     </div>
   );
 };

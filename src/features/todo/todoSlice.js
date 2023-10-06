@@ -1,6 +1,6 @@
 // boardSlice.js
 
-import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const todoSlice = createSlice({
   name: 'todos',
@@ -8,7 +8,6 @@ const todoSlice = createSlice({
   reducers: {
     addTodo: (state, action) => {
       const { id,text, completed } = action.payload;
-      // const id = nanoid()
       state[id] = {
         id,
         text,
@@ -17,6 +16,7 @@ const todoSlice = createSlice({
     },
     editTodo: (state, action) => {
       const { id, newText } = action.payload;
+      console.log(id, newText)
       if (state[id]) {
         state[id].text = newText;
       }

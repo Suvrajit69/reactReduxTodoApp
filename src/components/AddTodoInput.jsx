@@ -36,7 +36,7 @@ function AddTodoInput({boardId}) {
       />
       <button
         onClick={(e) => handleAddTodo(boardId, e)}
-        className="bg-blue-500 hover:bg-blue-600 text-white p-1 mt-2 rounded"
+        className="bg-blue-500 hover:bg-blue-600 text-white p-1 mt-2 rounded-md ml-2"
         type="submit"
       >
         Add Todo
