@@ -33,7 +33,7 @@ const App = () => {
         />
         <button
           onClick={handleAddBoard}
-          className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded"
+          className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded mt-2"
         >
           Add Board
         </button>

@@ -1,5 +1,6 @@
 import React from "react";
 import { removeBoard } from "../features/board/boardSlice";
+import { removeTodo } from "../features/todo/todoSlice";
 import { useSelector, useDispatch } from "react-redux";
 import TodoList from "./TodoList";
 import AddTodoInput from "./AddTodoInput";
@@ -10,8 +11,10 @@ function BoardCard() {
 
   const dispatch = useDispatch();
 
-  const handleremoveBoard = (boardId) => {
+  const handleremoveBoard = (boardId, todoIds) => {
     dispatch(removeBoard({ id: boardId }));
+    // console.log(todoIds)
+    dispatch(removeTodo({id: todoIds}))
   };
 
   return (
@@ -19,7 +22,7 @@ function BoardCard() {
       {Object.values(boards).map((board) => (
         <div key={board?.id} className="bg-gray-200 p-2 rounded">
           <button
-            onClick={() => handleremoveBoard(board.id)}
+            onClick={() => handleremoveBoard(board.id, board.todoIds)}
             className="text-red-500 hover:text-red-600 "
           >
             X

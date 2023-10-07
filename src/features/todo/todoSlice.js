@@ -1,13 +1,11 @@
-// boardSlice.js
-
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const todoSlice = createSlice({
-  name: 'todos',
+  name: "todos",
   initialState: {},
   reducers: {
     addTodo: (state, action) => {
-      const { id,text, completed } = action.payload;
+      const { id, text, completed } = action.payload;
       state[id] = {
         id,
         text,
@@ -16,7 +14,7 @@ const todoSlice = createSlice({
     },
     editTodo: (state, action) => {
       const { id, newText } = action.payload;
-      console.log(id, newText)
+      console.log(id, newText);
       if (state[id]) {
         state[id].text = newText;
       }
@@ -29,7 +27,13 @@ const todoSlice = createSlice({
     },
     removeTodo: (state, action) => {
       const { id } = action.payload;
-      delete state[id];
+      if (Array.isArray(id)) {
+        id.forEach((todoId) => {
+          delete state[todoId];
+        });
+      } else {
+        delete state[id];
+      }
     },
   },
 });
