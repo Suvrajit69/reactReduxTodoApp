@@ -27,21 +27,22 @@ function AddTodoInput({boardId}) {
   };
 
   return (
-    <>
+    <div className="flex items-center">
       <input
         type="text"
-        className="p-1 rounded-md bg-white"
+        className="p-1 rounded-md w-full bg-slate-100"
         value={newTodoText}
+        placeholder="Write your todos"
         onChange={(e) => setNewTodoText(e.target.value)}
       />
       <button
         onClick={(e) => handleAddTodo(boardId, e)}
-        className="bg-blue-500 hover:bg-blue-600 text-white p-1 mt-2 rounded-md ml-2"
+        className="bg-blue-500 hover:bg-blue-600 text-white p-1 text-xs rounded-md ml-2"
         type="submit"
       >
         Add Todo
       </button>
-    </>
+    </div>
   );
 }
 

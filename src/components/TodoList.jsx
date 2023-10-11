@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggleTodo, removeTodo, editTodo } from "../features/todo/todoSlice";
 import { removeTodoIdFromBoard } from "../features/board/boardSlice";
 
@@ -29,7 +29,7 @@ function TodoList({ board, todo }) {
   return (
     <li
       key={todo?.id}
-      className={`flex justify-between p-2 text-base bg-slate-300 rounded-md${
+      className={`flex justify-between p-2 text-base bg-slate-200 rounded-md${
         todo?.completed ? "line-through text-gray-500" : ""
       }`}
     >
@@ -43,7 +43,7 @@ function TodoList({ board, todo }) {
           />
           <button
             onClick={() => handleEditTodo(todo.id, newTodo)}
-            className="bg-blue-500 hover:bg-blue-600 text-white p-1 mt-2 rounded-md ml-2"
+            className="bg-blue-500 hover:bg-blue-600 text-white p-1 rounded-md ml-2 text-xs"
           >
             Add New Todo
           </button>

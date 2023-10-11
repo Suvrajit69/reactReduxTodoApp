@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import TodoList from "./TodoList";
 import AddTodoInput from "./AddTodoInput";
 
+import { XCircle } from "lucide-react";
+
 function BoardCard() {
   const boards = useSelector((state) => state.boards);
   const todos = useSelector((state) => state.todos);
@@ -18,14 +20,14 @@ function BoardCard() {
   };
 
   return (
-    <div className="flex space-x-2 flex-wrap gap-4 h-full">
+    <div className="board_layout">
       {Object.values(boards).map((board) => (
-        <div key={board?.id} className="bg-gray-200 p-2 rounded">
+        <div key={board?.id} className="prompt_card">
           <button
             onClick={() => handleremoveBoard(board.id, board.todoIds)}
-            className="text-red-500 hover:text-red-600 "
+            className="text-red-500 hover:text-red-600"
           >
-            X
+            <XCircle/>
           </button>
           <h2 className="text-lg font-semibold">{board.name}</h2>
           <AddTodoInput boardId={board.id} />
